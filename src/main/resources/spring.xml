@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!---
+
+    for primitive data use value and for object use ref
+    for the object creation there are some types singleton and prototype
+
+-->
+<!---
+
+    <bean id = "alien1" class = "org.example.Alien">
+        <property name="age" value="21"></property>
+        <property name="lap" ref ="lap1"></property>
+
+    </bean>
+
+    <bean id = "lap1" class = "org.example.Laptop">
+
+    </bean>
+
+   -->
+
+    <!-- Constructor Injection -->
+
+    <bean id = "alien1" class = "org.example.Alien" autowire="byType">
+<!--        <constructor-arg type="org.example.Laptop" ref="lap1" />
+            <constructor-arg type="int" value="21" />
+                if we pass two int var then it will get confuse so
+
+-->
+
+           <!--  <constructor-arg index="1" ref="lap1" />
+            <constructor-arg index="0" value="22" />
+            <constructor-arg index="2" value="21" />
+
+            if we have two int para then use indexing
+
+            -->
+
+        <!-- <constructor-arg name="lap" ref="lap1"/>
+        <constructor-arg name="age" value="21"/>
+        <constructor-arg name="sal" value="20000000"/>
+        -->
+
+        <!-- autowire works in absence of property -->
+        <property name="age" value="21"/>
+        <property name="com" ref="com1"/>
+
+    </bean>
+
+    <bean id = "com1" class = "org.example.Laptop" primary="true">      <!-- primary bean in case of confusion -->
+
+    </bean>
+
+    <bean class = "org.example.Desktop" lazy-init="true">
+
+    </bean>
+
+</beans>
+
